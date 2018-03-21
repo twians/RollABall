@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
+        count = 13;
         SetCountText();
         winText.text = "";
     }
@@ -34,15 +34,15 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive(false);
-            count++;
+            count = count - 1;
             SetCountText();
         }
     }
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 13)
+        countText.text = "Consumables Remaining:  " + count.ToString();
+        if (count == 0)
         {
             winText.text = "You Win!";
         }
