@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
+	public AudioClip Tada;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Pick Up"))
         {
+			AudioSource.PlayClipAtPoint(Tada, transform.position);
             other.gameObject.SetActive(false);
             count++;
             SetCountText();
