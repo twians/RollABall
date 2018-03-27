@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 
     void SetCountText()
     {
-        countText.text = "Consumables Remaining:  " + count.ToString();
+        countText.text = "Collectibles Remaining:  " + count.ToString();
         if (count == 0)
         {
             winText.text = "You Win!";
