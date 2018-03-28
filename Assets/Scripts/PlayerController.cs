@@ -8,18 +8,23 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private int count;
 
-    public float speed;
+    //public float speed;
+	public AudioClip Tada;
     public Text countText;
     public Text winText;
-	public AudioClip Tada;
+    public GameObject countObj;
+    public GameObject winObj;
+    
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        winText.text = "";
         count = 13;
         SetCountText();
-        winText.text = "";
     }
+
+    /**
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -28,7 +33,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
-    }
+    } **/
 
     void OnTriggerEnter(Collider other)
     {
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         countText.text = "Collectibles Remaining:  " + count.ToString();
+ 
         if (count == 0)
         {
             winText.text = "You Win!";

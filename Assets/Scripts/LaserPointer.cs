@@ -33,6 +33,8 @@ public class LaserPointer : MonoBehaviour {
     { 
         laser = Instantiate(laserPrefab);
         laserTransform = laser.transform;
+        reticle = Instantiate(teleportReticlePrefab);
+        teleportReticleTransform = reticle.transform;
     }
 
     private void ShowLaser(RaycastHit hit)
@@ -63,6 +65,9 @@ public class LaserPointer : MonoBehaviour {
             {
                 hitPoint = hit.point;
                 ShowLaser(hit);
+                reticle.SetActive(true);
+                teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+                shouldTeleport = true;
             }
         }
         else
@@ -71,9 +76,7 @@ public class LaserPointer : MonoBehaviour {
             reticle.SetActive(false);
         }
         
-        reticle.SetActive(true);
-        teleportReticleTransform.position = hitPoint + teleportReticleOffset;
-        shouldTeleport = true;
+        
 
         if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
         {
